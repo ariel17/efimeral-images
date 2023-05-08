@@ -1,3 +1,5 @@
+![Docker CI/CD](https://github.com/ariel17/efimeral-images/actions/workflows/docker-image.yml/badge.svg)
+
 # Efimeral Docker images
 
 All available images for Efimeral project. Differente OS, same purpose: a raw
