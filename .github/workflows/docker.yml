@@ -31,4 +31,4 @@ jobs:
           file: Dockerfile-alpine
           pull: true
           push: true
-          tags: ariel17/efimeral-images:alpine
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/efimeral-images:alpine
