@@ -2,7 +2,10 @@ FROM alpine:latest
 
 RUN apk update
 RUN apk upgrade
-RUN apk --no-cache add ttyd
+RUN apk --no-cache add ttyd vim htop zsh busybox-extras curl
+RUN adduser -D box --shell /bin/zsh
+
+USER box
 
 EXPOSE 8080
 
