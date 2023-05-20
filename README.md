@@ -56,5 +56,5 @@ aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --
 
 ## Related projects
 
-* [Efimeral infrastructure](https://github.com/ariel17/efimeral-infra)
+* [Efimeral API](https://github.com/ariel17/efimeral-api)
 * [Efimeral web](https://github.com/ariel17/efimeral-web)
