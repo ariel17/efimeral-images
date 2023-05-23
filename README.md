@@ -1,5 +1,7 @@
 ![Docker](https://github.com/ariel17/efimeral-images/actions/workflows/docker.yml/badge.svg) ![ECR](https://github.com/ariel17/efimeral-images/actions/workflows/ecr.yml/badge.svg)
 
+![Logo](./docs/logo.png)
+
 # Efimeral Docker images
 
 All available images for Efimeral project. Different OSs, same purpose: a raw
