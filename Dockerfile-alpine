@@ -6,6 +6,7 @@ RUN apk --no-cache add ttyd vim htop zsh busybox-extras curl
 RUN adduser -D box --shell /bin/zsh
 
 COPY motd /etc/motd
+RUN sed -i "s/DISTRIBUTION/Alpine/g" /etc/motd
 
 COPY zshrc /home/box/.zshrc
 RUN chown box:box /home/box/.zshrc

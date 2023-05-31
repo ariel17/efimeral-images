@@ -11,6 +11,9 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ["alpine", "ubuntu"]
     steps:
       -
         name: Set up QEMU
@@ -25,10 +28,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push - Alpine
+        name: Build and push to Docker Hub
         uses: docker/build-push-action@v4
         with:
-          file: Dockerfile-alpine
+          file: Dockerfile-${{ matrix.os }}
           pull: true
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/efimeral-images:alpine
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/efimeral-images:${{ matrix.os }}

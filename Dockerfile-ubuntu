@@ -1,0 +1,19 @@
+FROM ubuntu:latest
+
+RUN apt-get update
+RUN apt-get full-upgrade -y
+RUN apt-get autoremove -y
+RUN apt-get install -y ttyd vim htop zsh curl
+RUN adduser --shell /bin/zsh --disabled-password --gecos "" -q box
+
+COPY motd /etc/motd
+RUN sed -i "s/DISTRIBUTION/Ubuntu/g" /etc/motd
+
+COPY zshrc /home/box/.zshrc
+RUN chown box:box /home/box/.zshrc
+
+USER box
+
+EXPOSE 8080
+
+CMD ttyd --once --cwd /home/box --port 8080 zsh

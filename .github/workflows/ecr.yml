@@ -11,6 +11,9 @@ on:
 jobs:
   ecr:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: ["alpine", "ubuntu"]
     steps:
       -
         name: Check out code
@@ -27,11 +30,11 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
       - 
-        name: Build, tag, and push image to Amazon ECR - Alpine
+        name: Build, tag, and push image to Amazon ECR
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ secrets.ECR_REPOSITORY_NAME }}
-          IMAGE_TAG: alpine
+          IMAGE_TAG: ${{ matrix.os }}
         run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:alpine -f Dockerfile-alpine .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:alpine
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${{ matrix.os }} -f Dockerfile-${{ matrix.os }} .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{ matrix.os }}
