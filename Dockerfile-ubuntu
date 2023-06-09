@@ -3,7 +3,7 @@ FROM ubuntu:latest
 RUN apt-get update
 RUN apt-get full-upgrade -y
 RUN apt-get autoremove -y
-RUN apt-get install -y ttyd vim htop zsh curl
+RUN apt-get install -y ttyd vim htop zsh curl git
 RUN adduser --shell /bin/zsh --disabled-password --gecos "" -q box
 
 COPY motd /etc/motd

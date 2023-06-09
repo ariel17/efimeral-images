@@ -2,7 +2,7 @@ FROM alpine:latest
 
 RUN apk update
 RUN apk upgrade
-RUN apk --no-cache add ttyd vim htop zsh busybox-extras curl
+RUN apk --no-cache add ttyd vim htop zsh busybox-extras curl git
 RUN adduser -D box --shell /bin/zsh
 
 COPY motd /etc/motd
