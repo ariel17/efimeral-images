@@ -8,6 +8,7 @@ RUN adduser --shell /bin/zsh --disabled-password --gecos "" -q box
 
 COPY motd /etc/motd
 RUN sed -i "s/DISTRIBUTION/Ubuntu/g" /etc/motd
+RUN sed -i "s/EXTRAINFO//g" /etc/motd
 
 COPY zshrc /home/box/.zshrc
 RUN chown box:box /home/box/.zshrc
