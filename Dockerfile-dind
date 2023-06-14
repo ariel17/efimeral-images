@@ -2,16 +2,19 @@ FROM docker:dind
 
 RUN apk update
 RUN apk upgrade
-RUN apk --no-cache add ttyd vim htop zsh busybox-extras curl git
-RUN adduser -D box --shell /bin/zsh
+RUN apk --no-cache add ttyd vim htop zsh busybox-extras curl git sudo
 
 COPY motd /etc/motd
 RUN sed -i "s/DISTRIBUTION/Alpine/g" /etc/motd
+RUN sed -i "s/EXTRAINFO/To start Docker daemon use: 'sudo dockerd-entrypoint.sh \&'. Remember to use 'sudo' on Docker commands./g" /etc/motd
 
+RUN adduser -D box --shell /bin/zsh wheel
+RUN echo "box ALL=(ALL) NOPASSWD: /usr/local/bin/docker, /usr/local/bin/docker-compose, /usr/local/bin/dockerd-entrypoint.sh" > /etc/sudoers
 COPY zshrc /home/box/.zshrc
 RUN chown box:box /home/box/.zshrc
-
 USER box
+
+ENV DOCKER_HOST=unix:///var/run/docker.sock
 
 EXPOSE 8000-9000
 
