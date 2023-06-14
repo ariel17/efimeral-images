@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: ["alpine", "ubuntu", "vscode"]
+        os: ["alpine", "ubuntu", "vscode", "dind"]
     steps:
       -
         name: Check out code

@@ -1,0 +1,18 @@
+FROM docker:dind-rootless
+
+RUN apk update
+RUN apk upgrade
+RUN apk --no-cache add ttyd vim htop zsh busybox-extras curl git
+RUN adduser -D box --shell /bin/zsh
+
+COPY motd /etc/motd
+RUN sed -i "s/DISTRIBUTION/Alpine/g" /etc/motd
+
+COPY zshrc /home/box/.zshrc
+RUN chown box:box /home/box/.zshrc
+
+USER box
+
+EXPOSE 8000-9000
+
+CMD ttyd --once --cwd /home/box --port 8080 zsh
